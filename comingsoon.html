@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coming Soon — Quably.in</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    :root {
+      --bg: #020214;
+      --muted: #9aa4bf;
+      --accent-start: #2dd4ff;
+      --accent-end: #7c3aed;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      background: var(--bg);
+      color: white;
+    }
+    .coming-soon {
+      max-width: 600px;
+      padding: 40px 20px;
+    }
+    .coming-soon img {
+      width: 150px; /* Increased size */
+      height: 150px; /* Increased size */
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+    .coming-soon h1 {
+      font-size: clamp(28px, 4.5vw, 48px);
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .coming-soon p {
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-size: 18px;
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+    .countdown {
+      font-size: 22px;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+      animation: fadeInUp 1.6s ease-out forwards;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      animation: fadeInUp 2s ease-out forwards;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    a.btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-soon">
+    <img src="logo.png" alt="Quably Logo">
+    <h1>Coming Soon 🚀</h1>
+    <p>We’re working on something amazing for creators, entrepreneurs & small businesses.</p>
+    <div class="countdown" id="countdown">Launching in 00d 00h 00m 00s</div>
+    <a class="btn" href="https://www.instagram.com/quably.in/" target="_blank">Follow on Instagram</a>
+  </div>
+
+  <script>
+    // Set launch date to 30 days from now
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 30);
+
+    const countdownEl = document.getElementById("countdown");
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate.getTime() - now;
+
+      if (distance < 0) {
+        countdownEl.innerText = "We're Live!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerText = `Launching in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
